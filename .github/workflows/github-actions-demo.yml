@@ -3,15 +3,25 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
  workflow_dispatch:
 jobs:
-  example-job:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [14, 16]
     steps:
-      - name: Retrieve secret
-        env:
-          super_secret: ${{ secrets.SUPERSECRET }}
-        run: |
-          echo "$super_secret"
-          echo "${{ secrets.SUPERSECRET }}"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+# jobs:
+#   example-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Retrieve secret
+#         env:
+#           super_secret: ${{ secrets.SUPERSECRET }}
+#         run: |
+#           echo "$super_secret"
+#           echo "${{ secrets.SUPERSECRET }}"
 # jobs:
 #   Explore-GitHub-Actions:
 #     runs-on: ubuntu-latest
