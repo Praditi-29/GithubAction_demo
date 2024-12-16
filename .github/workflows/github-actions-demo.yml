@@ -11,6 +11,7 @@ jobs:
           super_secret: ${{ secrets.SUPERSECRET }}
         run: |
           echo "$super_secret"
+          echo "${{ secrets.SUPERSECRET }}"
 # jobs:
 #   Explore-GitHub-Actions:
 #     runs-on: ubuntu-latest
